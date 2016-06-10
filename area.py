@@ -4,7 +4,7 @@ In this problem set you work with cities infobox data, audit it, come up with a
 cleaning idea and then clean it up.
 
 Since in the previous quiz you made a decision on which value to keep for the
-"areaLand" field, you now know what has to be done.
+"area#Land" field, you now know what has to be done.
 
 Finish the function fix_area(). It will receive a string as an input, and it
 has to return a float representing the value of the area or None.
@@ -47,29 +47,24 @@ def process_file(filename):
 
         # processing file
         for line in reader:
-            # calling your function to fix the area value
-            if "areaLand" in line:
-                print 'BEFORE:', line['areaLand']
-                line["areaLand"] = fix_area(line["areaLand"])
-                print 'after:', line['areaLand']
-            data.append(line)
+            if "populationTotal" in line:
+                print "----------POP CHECK----------"
+                print 'BEFORE:', line['populationTotal']
+                line["populationTotal"] = fix_area(line["populationTotal"])
+                print 'after:', line['populationTotal']
+            if "areaMetro" in line:
+                print "----------AREA CHECK----------"
+                print 'BEFORE:', line['areaMetro']
+                line["areaMetro"] = fix_area(line["areaMetro"])
+                print 'after:', line['areaMetro']
+            if "postalCode" in line:
+                print "----------POSTAL CHECK----------"
+                print 'BEFORE:', line['postalCode']
+                line["postalCode"] = fix_area(line["postalCode"])
+                print 'after:', line['postalCode']
+
+
 
     return data
 
 process_file(r'C:\Users\Bash\Desktop\Udacity\2_Data Analysis\P3\0610\cities.csv')
-
-def test():
-    data = process_file(CITIES)
-
-    print "Printing three example results:"
-    for n in range(5,8):
-        pprint.pprint(data[n]["areaLand"])
-
-    assert data[3]["areaLand"] == None
-    assert data[8]["areaLand"] == 55166700.0
-    assert data[20]["areaLand"] == 14581600.0
-    assert data[33]["areaLand"] == 20564500.0
-
-
-#if __name__ == "__main__":
-#    test()
